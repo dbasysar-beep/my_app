@@ -16,6 +16,9 @@ class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
+  String _selectedRole = 'employee'; // Default role
+
+  final List<String> _roles = ['employee', 'admin'];
 
   @override
   void dispose() {
@@ -32,6 +35,7 @@ class _SignupScreenState extends State<SignupScreen> {
       final success = await authProvider.signUp(
         _emailController.text.trim(),
         _passwordController.text,
+        _selectedRole,
       );
 
       if (!mounted) return;
@@ -43,7 +47,9 @@ class _SignupScreenState extends State<SignupScreen> {
             backgroundColor: Colors.green,
           ),
         );
-        Navigator.pushReplacementNamed(context, '/home');
+        // Navigate to appropriate dashboard based on role
+        final route = _selectedRole == 'admin' ? '/admin-dashboard' : '/employee-dashboard';
+        Navigator.pushReplacementNamed(context, route);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -162,6 +168,31 @@ class _SignupScreenState extends State<SignupScreen> {
                         }
                         if (value != _passwordController.text) {
                           return 'Passwords do not match';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    DropdownButtonFormField<String>(
+                      value: _selectedRole,
+                      decoration: const InputDecoration(
+                        labelText: 'Role',
+                        prefixIcon: Icon(Icons.person),
+                      ),
+                      items: _roles.map((role) {
+                        return DropdownMenuItem(
+                          value: role,
+                          child: Text(role.toUpperCase()),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedRole = value!;
+                        });
+                      },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please select a role';
                         }
                         return null;
                       },

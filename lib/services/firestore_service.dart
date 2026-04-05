@@ -3,6 +3,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FirestoreService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
+  // User operations
+  Future<DocumentSnapshot?> getUserData(String userId) async {
+    try {
+      return await _db.collection('users').doc(userId).get();
+    } catch (e) {
+      throw 'Error getting user data: $e';
+    }
+  }
+
   // Employee operations
   Future<void> addEmployee(String userId, Map<String, dynamic> employeeData) async {
     try {
