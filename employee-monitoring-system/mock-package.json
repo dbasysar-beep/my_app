@@ -1,0 +1,13 @@
+{
+  "name": "employee-monitoring-mock-backend",
+  "version": "1.0.0",
+  "description": "Mock backend server for testing the frontend while Java/Maven are being installed",
+  "main": "mock-backend.js",
+  "scripts": {
+    "start": "node mock-backend.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "468957971292",
+    "project_id": "retailcheck-e12d2",
+    "storage_bucket": "retailcheck-e12d2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468957971292:android:c62dcb9d2fe94e521ef799",
+        "android_client_info": {
+          "package_name": "com.example.my_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBQEmLdKXt0P3AX9usT-oYNNe-czUHmRs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
